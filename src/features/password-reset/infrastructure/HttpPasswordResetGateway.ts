@@ -13,14 +13,14 @@ export class HttpPasswordResetGateway implements PasswordResetGateway {
   validateToken(token: string, signal?: AbortSignal): Promise<ValidateResetTokenResponse> {
     const query = new URLSearchParams({ token }).toString();
     return this.http.get<ValidateResetTokenResponse>(
-      `${import.meta.env.VITE_API_PROXY_TARGET}/api/auth/password/reset/validate?${query}`,
+      `${import.meta.env.API_PROXY_TARGET}/api/auth/password/reset/validate?${query}`,
       { signal },
     );
   }
 
   reset(request: ResetPasswordRequest): Promise<ResetPasswordResponse> {
     return this.http.post<ResetPasswordResponse>(
-      `${import.meta.env.VITE_API_PROXY_TARGET}/api/auth/password/reset`,
+      `${import.meta.env.API_PROXY_TARGET}/api/auth/password/reset`,
       request
     );
   }
